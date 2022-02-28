@@ -1,0 +1,110 @@
+[
+  {
+    "productName": "Tie Dye Pajamas Set in Pink & Blue",
+    "price": 20.0,
+    "description": "A super soft and comfy pajamas set with pastel pink and blue tie dye colours! Will definitely make you have a relaxing sleep.",
+    "categories": ["clothing", "tie dye"],
+    "stock": 10,
+    "colours": ["pink", "blue"],
+    "photos": []
+  },
+  {
+    "productName": "Tie Dye Pajamas Set in Peach & Green",
+    "price": 20.0,
+    "description": "A super soft and comfy pajamas set with pastel peach and green tie dye colours! Will definitely make you have a relaxing sleep.",
+    "categories": ["clothing", "tie dye"],
+    "stock": 15,
+    "colours": ["peach", "green"],
+    "photos": []
+  },
+  {
+    "productName": "Tie Dye Pajamas Set in Yellow & Purple",
+    "price": 20.0,
+    "description": "A super soft and comfy pajamas set with pastel yellow and purple tie dye colours! Will definitely make you have a relaxing sleep.",
+    "categories": ["clothing", "tie dye"],
+    "stock": 20,
+    "colours": ["yellow", "purple"],
+    "photos": []
+  },
+  {
+    "productName": "Tie Dye Pajamas Set in Pink",
+    "price": 20.0,
+    "description": "A super soft and comfy pajamas set with pastel pink tie dye colour! Will definitely make you have a relaxing sleep.",
+    "categories": ["clothing", "tie dye"],
+    "stock": 17,
+    "colours": ["pink"],
+    "photos": []
+  },
+  {
+    "productName": "Groceries Sticker",
+    "price": 3.5,
+    "description": "Decorate your belongings with this cute groceries sticker! It is laser cut and waterproof.",
+    "categories": ["stickers"],
+    "stock": 20,
+    "colours": ["blue", "red", "yellow", "pink", "grey"],
+    "photos": []
+  },
+  {
+    "productName": "Planets Sticker",
+    "price": 3.5,
+    "description": "Decorate your belongings with this cute planets sticker! It is laser cut and waterproof.",
+    "categories": ["stickers"],
+    "stock": 10,
+    "colours": ["blue", "red", "green", "purple", "yellow", "peach", "grey"],
+    "photos": []
+  },
+  {
+    "productName": "BTS Dynamite Sticker",
+    "price": 3.5,
+    "description": "Light it up, dynamite! Decorate your belongings with this BTS dynamite sticker! It is laser cut and waterproof.",
+    "categories": ["stickers", "bts merch"],
+    "stock": 10,
+    "colours": ["blue", "pink", "green", "purple", "yellow"],
+    "photos": []
+  },
+  {
+    "productName": "BTS Boy With Luv Sticker",
+    "price": 3.5,
+    "description": "Oh my, my, my! Decorate your belongings with this cute BTS Boy With Luv sticker! It is laser cut and waterproof.",
+    "categories": ["stickers", "bts merch"],
+    "stock": 10,
+    "colours": ["blue", "pink", "yellow", "peach"],
+    "photos": []
+  },
+  {
+    "productName": "BTS Stay Gold Sticker",
+    "price": 3.5,
+    "description": "Decorate your belongings with this cute BTS Stay Gold sticker! It is laser cut and waterproof. Remember, stay gold! ;)",
+    "categories": ["stickers", "bts merch"],
+    "stock": 10,
+    "colours": ["black", "pink", "green", "yellow"],
+    "photos": []
+  },
+  {
+    "productName": "Han Stray Kids Snack Keychain",
+    "price": 3.5,
+    "description": "Add some spice to your keys by using this keychain! Other Stray Kids members keychain also available :)",
+    "categories": ["keychains", "stray kids merch"],
+    "stock": 10,
+    "colours": ["blue", "red", "green", "purple", "yellow", "peach", "grey"],
+    "photos": []
+  },
+  {
+    "productName": "Mini Scrunchies (2 pcs)",
+    "price": 5,
+    "description": "Small tie dye scrunchies to tie your hair, will definitely 1000% make you look cuter ;)",
+    "categories": ["scrunchies", "tie dye"],
+    "stock": 10,
+    "colours": ["blue", "pink", "purple", "yellow"],
+    "photos": []
+  },
+  {
+    "productName": "Maxi Scrunchies (2 pcs)",
+    "price": 5.5,
+    "description": "Big tie dye scrunchies to tie your hair, will definitely 1000% make you look cuter ;)",
+    "categories": ["scrunchies", "tie dye"],
+    "stock": 10,
+    "colours": ["blue", "pink", "peach", "green"],
+    "photos": []
+  }
+]
