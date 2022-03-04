@@ -63,7 +63,14 @@ class AllPurchases extends React.Component {
       <div>
         {this.state.orders.length !== 0 ? (
           this.state.orders.map((order) => (
-            <Link to={`/orders/${order._id}`}>
+            <Link
+              to={{
+                pathname: `/orders/${order._id}`,
+                state: {
+                  order: order,
+                },
+              }}
+            >
               <PurchasesRow order={order} />
             </Link>
           ))

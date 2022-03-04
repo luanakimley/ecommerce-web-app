@@ -3,7 +3,6 @@ import { ACCESS_LEVEL_GUEST, SERVER_HOST } from "../../config/global_constants";
 import axios from "axios";
 import Swal from "sweetalert2";
 import { Trash } from "react-bootstrap-icons";
-import { Carousel } from "react-bootstrap";
 
 class CartRow extends React.Component {
   constructor(props) {
@@ -72,7 +71,7 @@ class CartRow extends React.Component {
           }
         });
     } else {
-      JSON.parse(localStorage.cart).map((item) => {
+      JSON.parse(localStorage.cart).forEach((item) => {
         if (item.productId === this.props.item.productId) {
           this.setState({ cartId: item._id });
           this.setState({ quantity: item.quantity });
@@ -101,7 +100,7 @@ class CartRow extends React.Component {
           });
       } else {
         let curCart = JSON.parse(localStorage.cart);
-        curCart.map((item) => {
+        curCart.forEach((item) => {
           if (item.productId === this.props.item.productId) {
             item.quantity++;
             window.location.reload(false);
@@ -154,7 +153,7 @@ class CartRow extends React.Component {
     } else {
       if (this.state.quantity > 1) {
         let curCart = JSON.parse(localStorage.cart);
-        curCart.map((item) => {
+        curCart.forEach((item) => {
           if (item.productId === this.props.item.productId) {
             item.quantity--;
             window.location.reload(false);
@@ -181,7 +180,7 @@ class CartRow extends React.Component {
           if (result.isConfirmed) {
             let index = 0;
             let curCart = JSON.parse(localStorage.cart);
-            curCart.map((item, i) => {
+            curCart.forEach((item, i) => {
               if (item.productId === this.props.item.productId) {
                 index = i;
               }
@@ -223,7 +222,7 @@ class CartRow extends React.Component {
           } else {
             let index = 0;
             let curCart = JSON.parse(localStorage.cart);
-            curCart.map((item, i) => {
+            curCart.forEach((item, i) => {
               if (item.productId === this.props.item.productId) {
                 index = i;
               }
@@ -242,13 +241,17 @@ class CartRow extends React.Component {
       <div className="product border-bottom mt-0 mb-2">
         <div className="row">
           <div className="col-md-3">
-            <Carousel nextLabel="" prevLabel="" indicators={false}>
-              {this.state.photos.map((photo) => (
-                <Carousel.Item key={photo._id}>
-                  <img className="rounded" key={photo._id} id={photo._id} />
-                </Carousel.Item>
-              ))}
-            </Carousel>
+            {this.state.photos.map((photo, index) =>
+              index === 0 ? (
+                <img
+                  width="200px"
+                  className="rounded"
+                  key={photo._id}
+                  id={photo._id}
+                  alt="Product"
+                />
+              ) : null
+            )}
           </div>
           <div className="col-md-8">
             <div className="info">

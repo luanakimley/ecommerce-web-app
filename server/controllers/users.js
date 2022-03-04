@@ -3,12 +3,16 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const fs = require("fs");
 let createError = require("http-errors");
+const JWT_PRIVATE_KEY = fs.readFileSync(
+  process.env.JWT_PRIVATE_KEY_FILENAME,
+  "utf8"
+);
 
 // verify user JWT password (if user is signed in)
 exports.verifyUsersJWTPassword = (req, res, next) => {
   jwt.verify(
     req.headers.authorization,
-    process.env.JWT_PRIVATE_KEY,
+    JWT_PRIVATE_KEY,
     { algorithm: "HS256" },
     (err, decodedToken) => {
       if (err) {
@@ -122,7 +126,7 @@ exports.userRegister = (req, res, next) => {
 
           const token = jwt.sign(
             { email: data.email, accessLevel: data.accessLevel },
-            process.env.JWT_PRIVATE_KEY,
+            JWT_PRIVATE_KEY,
             { algorithm: "HS256", expiresIn: process.env.JWT_EXPIRY }
           );
           return res.json({
@@ -140,7 +144,7 @@ exports.userRegister = (req, res, next) => {
 exports.userSignIn = (req, res) => {
   const token = jwt.sign(
     { email: req.data.email, accessLevel: req.data.accessLevel },
-    process.env.JWT_PRIVATE_KEY,
+    JWT_PRIVATE_KEY,
     { algorithm: "HS256", expiresIn: process.env.JWT_EXPIRY }
   );
 

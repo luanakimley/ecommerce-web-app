@@ -3,6 +3,7 @@ import axios from "axios";
 import { SERVER_HOST } from "../../config/global_constants";
 import ShopBanner from "../ShopBanner";
 import OrderDetailsRow from "./OrderDetailsRow";
+import { Link } from "react-router-dom";
 
 class OrderDetails extends React.Component {
   constructor(props) {
@@ -45,11 +46,56 @@ class OrderDetails extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="d-flex flex-column align-items-center">
         <ShopBanner title="Order Details" />
-        {this.state.products.map((product) => (
-          <OrderDetailsRow key={product._id} product={product} />
-        ))}
+        <div className="hgvcfwqx container p-3">
+          <h4 className="text-center mb-4">Products</h4>
+          {this.state.products.map((product) => (
+            <OrderDetailsRow key={product._id} product={product} />
+          ))}
+          <Link
+            to={{
+              pathname: `/return/${this.props.location.state.order._id}`,
+              state: {
+                order: this.props.location.state.order,
+              },
+            }}
+          >
+            <p className="text-center m-1">
+              <u>Return item?</u>
+            </p>
+          </Link>
+        </div>
+
+        <div className="bg-light p-3 order-details-summary mb-4">
+          <h4 className="text-center mb-4">Summary</h4>
+          <div className="summary-item">
+            <span>Payment method: </span>
+            <span className="float-right">
+              <strong>Paypal</strong>
+            </span>
+          </div>
+          <div className="summary-item">
+            <span>Subtotal: </span>
+            <span className="float-right">
+              €{this.props.location.state.order.amount}
+            </span>
+          </div>
+          <div className="summary-item">
+            <span>Shipping cost: </span>
+            <span className="float-right">
+              €{this.props.location.state.order.shippingCost}{" "}
+            </span>
+          </div>
+          <div className="summary-item mt-3">
+            <span>Total: </span>
+            <span className="float-right">
+              €
+              {this.props.location.state.order.amount +
+                this.props.location.state.order.shippingCost}
+            </span>
+          </div>
+        </div>
       </div>
     );
   }

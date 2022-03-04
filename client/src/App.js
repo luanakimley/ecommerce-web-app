@@ -21,6 +21,7 @@ import AdminDashboard from "./pages/AdminDashboard";
 import DeleteUser from "./components/AdminDashboard/DeleteUser";
 import AddToCart from "./components/ShoppingCart/AddToCart";
 import OrderDetails from "./components/Purchases/OrderDetails";
+import OrderReturn from "./components/Purchases/OrderReturn";
 
 if (typeof localStorage.accessLevel === "undefined") {
   localStorage.name = "GUEST";
@@ -70,6 +71,7 @@ class App extends React.Component {
             component={AddToCart}
           />
           <Route exact path="/orders/:id" component={OrderDetails} />
+          <Route exact path="/return/:id" component={OrderReturn} />
         </Switch>
       </BrowserRouter>
     );
