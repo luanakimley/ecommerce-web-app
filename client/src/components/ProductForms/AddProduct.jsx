@@ -163,7 +163,9 @@ class AddProduct extends React.Component {
   }
 
   validatePhotos() {
-    return this.state.selectedFiles !== null && this.state.selectedFiles.length < 2;
+    return (
+      this.state.selectedFiles !== null && this.state.selectedFiles.length < 2
+    );
   }
 
   validate() {
@@ -183,6 +185,8 @@ class AddProduct extends React.Component {
     const inputsAreAllValid = Object.keys(formInputsState).every(
       (index) => formInputsState[index]
     );
+
+    console.log(this.state.selectedFiles);
 
     let productNameError = "";
     let priceError = "";

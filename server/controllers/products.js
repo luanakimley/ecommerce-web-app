@@ -100,9 +100,18 @@ exports.editProduct = (req, res) => {
       (productDetails.stock = req.body.stock),
       (productDetails.photos = []);
 
-    req.files.map((file, index) => {
-      productDetails.photos[index] = { filename: `${file.filename}` };
-    });
+    if (req.files.length) {
+      req.files.map((file, index) => {
+        productDetails.photos[index] = { filename: `${file.filename}` };
+      });
+    } else {
+      req.body.productPhotos.map((file, index) => {
+        productDetails.photos[index] = {
+          filename: JSON.parse(file).filename,
+        };
+      });
+    }
+
     productsModel.findByIdAndUpdate(
       req.params.id,
       productDetails,

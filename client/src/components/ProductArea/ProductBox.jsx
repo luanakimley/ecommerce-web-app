@@ -65,7 +65,7 @@ export default class ProductBox extends React.Component {
             <p className="product-price">
               €{(Math.round(this.props.product.price * 100) / 100).toFixed(2)}
             </p>
-            {localStorage.accessLevel === parseInt(ACCESS_LEVEL_ADMIN) ? (
+            {parseInt(localStorage.accessLevel) === ACCESS_LEVEL_ADMIN ? (
               <div className="icons-in-box">
                 <Link to={"/editproduct/" + this.props.product._id}>
                   <Pencil className="mr-2" color="#787878" size={20} />

@@ -114,83 +114,22 @@ class CartRow extends React.Component {
 
   handleDecreaseQuantity = (e) => {
     if (localStorage.accessLevel > parseInt(ACCESS_LEVEL_GUEST)) {
-      if (this.state.quantity > 1) {
-        axios
-          .put(
-            `${SERVER_HOST}/cart/decreaseQuantity/${this.props.item._id}/${this.state._id}`
-          )
-          .then((res) => {
-            window.location.reload(false);
-          });
-      } else {
-        const MySwal = Swal.mixin({
-          customClass: {
-            confirmButton: "btn btn-success mr-2",
-            cancelButton: "btn btn-danger ml-2",
-          },
-          buttonsStyling: false,
+      axios
+        .put(
+          `${SERVER_HOST}/cart/decreaseQuantity/${this.props.item._id}/${this.state._id}`
+        )
+        .then((res) => {
+          window.location.reload(false);
         });
-
-        MySwal.fire({
-          title: "Remove item from shopping cart?",
-          icon: "warning",
-          showCancelButton: true,
-          confirmButtonColor: "#5cb85c",
-          cancelButtonColor: "#d33",
-          confirmButtonText: "Yes, delete it!",
-        }).then((result) => {
-          if (result.isConfirmed) {
-            axios
-              .delete(
-                `${SERVER_HOST}/cart/decreaseQuantity/${this.props.item._id}/${this.state._id}`
-              )
-              .then((res) => {
-                window.location.reload(false);
-              });
-          }
-        });
-      }
     } else {
-      if (this.state.quantity > 1) {
-        let curCart = JSON.parse(localStorage.cart);
-        curCart.forEach((item) => {
-          if (item.productId === this.props.item.productId) {
-            item.quantity--;
-            window.location.reload(false);
-          }
-        });
-        localStorage.cart = JSON.stringify(curCart);
-      } else {
-        const MySwal = Swal.mixin({
-          customClass: {
-            confirmButton: "btn btn-success mr-2",
-            cancelButton: "btn btn-danger ml-2",
-          },
-          buttonsStyling: false,
-        });
-
-        MySwal.fire({
-          title: "Remove item from shopping cart?",
-          icon: "warning",
-          showCancelButton: true,
-          confirmButtonColor: "#5cb85c",
-          cancelButtonColor: "#d33",
-          confirmButtonText: "Yes, delete it!",
-        }).then((result) => {
-          if (result.isConfirmed) {
-            let index = 0;
-            let curCart = JSON.parse(localStorage.cart);
-            curCart.forEach((item, i) => {
-              if (item.productId === this.props.item.productId) {
-                index = i;
-              }
-            });
-            curCart.splice(index, 1);
-            localStorage.cart = JSON.stringify(curCart);
-            window.location.reload(false);
-          }
-        });
-      }
+      let curCart = JSON.parse(localStorage.cart);
+      curCart.forEach((item) => {
+        if (item.productId === this.props.item.productId) {
+          item.quantity--;
+          window.location.reload(false);
+        }
+      });
+      localStorage.cart = JSON.stringify(curCart);
     }
   };
 
@@ -264,12 +203,21 @@ class CartRow extends React.Component {
                 <div className="col-md-4 quantity">
                   <label>Quantity:</label>
                   <br />
-                  <button
-                    className="btn rounded-circle mr-3"
-                    onClick={this.handleDecreaseQuantity}
-                  >
-                    -
-                  </button>
+                  {this.state.quantity > 1 ? (
+                    <button
+                      className="btn rounded-circle mr-3"
+                      onClick={this.handleDecreaseQuantity}
+                    >
+                      -
+                    </button>
+                  ) : (
+                    <button
+                      className="btn rounded-circle mr-3"
+                      onClick={this.handleRemoveItem}
+                    >
+                      -
+                    </button>
+                  )}
                   {this.state.quantity}
 
                   <span className="">

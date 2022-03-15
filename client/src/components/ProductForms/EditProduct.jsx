@@ -4,6 +4,7 @@ import { Form, Button, InputGroup } from "react-bootstrap";
 import Swal from "sweetalert2";
 import { XLg } from "react-bootstrap-icons";
 import axios from "axios";
+import { Trash } from "react-bootstrap-icons";
 import {
   SERVER_HOST,
   CATEGORIES,
@@ -138,9 +139,13 @@ class EditProduct extends React.Component {
       formData.append("colours", this.state.colours[i]);
     }
 
-    if (this.state.selectedFiles) {
+    if (this.state.selectedFiles !== null) {
       for (let i = 0; i < this.state.selectedFiles.length; i++) {
         formData.append("productPhotos", this.state.selectedFiles[i]);
+      }
+    } else {
+      for (let i = 0; i < this.state.photos.length; i++) {
+        formData.append("productPhotos", JSON.stringify(this.state.photos[i]));
       }
     }
 
@@ -221,13 +226,13 @@ class EditProduct extends React.Component {
   }
 
   render() {
+    console.log(JSON.stringify(this.state.photos[0]));
+    console.log(this.state.selectedFiles);
+
     const formInputsState = this.validate();
     const inputsAreAllValid = Object.keys(formInputsState).every(
       (index) => formInputsState[index]
     );
-
-    console.log(this.state.photos);
-    console.log(this.state.selectedFiles);
 
     let productNameError = "";
     let priceError = "";
@@ -407,12 +412,16 @@ class EditProduct extends React.Component {
                 />
                 <div className="d-flex">
                   {this.state.photos.map((photo) => (
-                    <img
-                      className="rounded mt-3  mr-3 ml-0"
-                      key={photo._id}
-                      id={photo._id}
-                      width="200px"
-                    />
+                    <>
+                      <img
+                        className="rounded mt-3  mr-3 ml-0"
+                        key={photo._id}
+                        id={photo._id}
+                        width="200px"
+                        alt="Product"
+                      />
+                      <Trash />
+                    </>
                   ))}
                 </div>
               </Form.Group>
