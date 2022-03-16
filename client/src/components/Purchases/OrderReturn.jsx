@@ -13,8 +13,28 @@ class OrderReturn extends React.Component {
       user: "",
       photos: [],
       quantity: [],
+      selected: [],
+      _id: "",
     };
   }
+
+  handleSelected = (e) => {
+    let selected = this.state.selected;
+    let index;
+    if (e.target.checked) {
+      selected.push(e.target.value);
+    } else {
+      index = selected.indexOf(e.target.value);
+      selected.splice(index, 1);
+    }
+    this.setState({ selected: selected });
+  };
+
+  handleSubmit = (e) => {
+    axios.defaults.withCredentials = true;
+
+    window.location.reload(false);
+  };
 
   componentDidMount() {
     axios.defaults.withCredentials = true;
@@ -24,6 +44,7 @@ class OrderReturn extends React.Component {
         headers: { authorization: localStorage.token },
       })
       .then((res) => {
+        this.setState({ _id: res.data._id });
         let products = [];
         res.data.products.map((product, index) => {
           products[index] = product;
@@ -45,6 +66,7 @@ class OrderReturn extends React.Component {
   }
 
   render() {
+    console.log(this.state.selected);
     return (
       <div className="d-flex flex-column align-items-center">
         <ShopBanner title="Order Return" />
@@ -52,7 +74,12 @@ class OrderReturn extends React.Component {
           <h4 className="text-center mb-4">Select items to return</h4>
           {this.state.products.map((product) => (
             <div className="d-flex align-items-center">
-              <input type="checkbox" className="mr-4" />
+              <input
+                onChange={this.handleSelected}
+                type="checkbox"
+                value={product._id}
+                className="mr-4"
+              />
               <OrderDetailsRow key={product._id} product={product} />
             </div>
           ))}
@@ -80,7 +107,12 @@ class OrderReturn extends React.Component {
           </div>
         </div>
         <div className="d-flex flex-row m-3">
-          <button className="btn btn-success mr-3 mb-4 w-80">Confirm</button>
+          <button
+            onClick={this.handleSubmit}
+            className="btn btn-success mr-3 mb-4 w-80"
+          >
+            Confirm
+          </button>
           <Link
             to={{
               pathname: `/orders/${this.props.match.params.id}`,

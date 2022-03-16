@@ -27,7 +27,7 @@ export default class SingleProduct extends React.Component {
 
   render() {
     return (
-      <section className="single_product_details_area d-flex align-items-center">
+      <section className="h-100 single_product_details_area d-flex align-items-center">
         <div className="single_product_thumb clearfix">
           <div className="product_thumbnail_slides ">
             <Carousel nextLabel="" prevLabel="" indicators={false}>

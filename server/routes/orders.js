@@ -7,11 +7,9 @@ const {
   getAllOrders,
   getUserOrders,
   getOneOrder,
+  returnItem,
 } = require("../controllers/orders");
-const {
-  checkAdministrator,
-  verifyUsersJWTPassword,
-} = require("../controllers/users");
+const { verifyUsersJWTPassword } = require("../controllers/users");
 
 router.get("/orders", getAllOrders);
 router.post("/orders", jsonParser, createOrder);

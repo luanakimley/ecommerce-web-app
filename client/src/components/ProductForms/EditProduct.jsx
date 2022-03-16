@@ -17,6 +17,7 @@ class EditProduct extends React.Component {
     this.state = {
       productName: "",
       price: "",
+      _id: "",
       description: "",
       categories: [],
       selectedCategory: "",
@@ -42,6 +43,7 @@ class EditProduct extends React.Component {
             console.log(res.data.errorMessage);
           } else {
             this.setState({
+              _id: res.data._id,
               productName: res.data.productName,
               price: res.data.price,
               description: res.data.description,
@@ -121,6 +123,38 @@ class EditProduct extends React.Component {
     });
   };
 
+  handleRemovePhoto = (e) => {
+    let formData = new FormData();
+
+    formData.append("productName", this.state.productName);
+    formData.append("price", this.state.price);
+    formData.append("description", this.state.description);
+    for (let i = 0; i < this.state.categories.length; i++) {
+      formData.append("categories", this.state.categories[i]);
+    }
+    formData.append("stock", this.state.stock);
+    for (let i = 0; i < this.state.colours.length; i++) {
+      formData.append("colours", this.state.colours[i]);
+    }
+    if (this.state.selectedFiles !== null) {
+      for (let i = 0; i < this.state.selectedFiles.length; i++) {
+        formData.append("productPhotos", this.state.selectedFiles[i]);
+      }
+    } else {
+      for (let i = 0; i < this.state.photos.length; i++) {
+        formData.append("productPhotos", JSON.stringify(this.state.photos[i]));
+      }
+    }
+
+    axios.put(
+      `${SERVER_HOST}/products/photo/${this.state._id}/${e.currentTarget.dataset.id}`,
+      formData,
+      {
+        headers: { authorization: localStorage.token },
+      }
+    );
+  };
+
   handleSubmit = (e) => {
     e.preventDefault();
 
@@ -139,11 +173,18 @@ class EditProduct extends React.Component {
       formData.append("colours", this.state.colours[i]);
     }
 
-    if (this.state.selectedFiles !== null) {
+    if (this.state.selectedFiles && !this.state.photos.length) {
       for (let i = 0; i < this.state.selectedFiles.length; i++) {
-        formData.append("productPhotos", this.state.selectedFiles[i]);
+        formData.append("newProductPhotos", this.state.selectedFiles[i]);
+      }
+    } else if (!this.state.selectedFiles && this.state.photos.length) {
+      for (let i = 0; i < this.state.photos.length; i++) {
+        formData.append("productPhotos", JSON.stringify(this.state.photos[i]));
       }
     } else {
+      for (let i = 0; i < this.state.selectedFiles.length; i++) {
+        formData.append("newProductPhotos", this.state.selectedFiles[i]);
+      }
       for (let i = 0; i < this.state.photos.length; i++) {
         formData.append("productPhotos", JSON.stringify(this.state.photos[i]));
       }
@@ -226,9 +267,6 @@ class EditProduct extends React.Component {
   }
 
   render() {
-    console.log(JSON.stringify(this.state.photos[0]));
-    console.log(this.state.selectedFiles);
-
     const formInputsState = this.validate();
     const inputsAreAllValid = Object.keys(formInputsState).every(
       (index) => formInputsState[index]
@@ -412,7 +450,7 @@ class EditProduct extends React.Component {
                 />
                 <div className="d-flex">
                   {this.state.photos.map((photo) => (
-                    <>
+                    <div className="d-flex flex-column">
                       <img
                         className="rounded mt-3  mr-3 ml-0"
                         key={photo._id}
@@ -420,8 +458,14 @@ class EditProduct extends React.Component {
                         width="200px"
                         alt="Product"
                       />
-                      <Trash />
-                    </>
+                      <button
+                        data-id={photo.filename}
+                        className="btn btn-secondary mr-3 mt-2"
+                        onClick={this.handleRemovePhoto}
+                      >
+                        Remove image
+                      </button>
+                    </div>
                   ))}
                 </div>
               </Form.Group>

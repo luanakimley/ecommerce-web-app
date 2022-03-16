@@ -100,16 +100,44 @@ exports.editProduct = (req, res) => {
       (productDetails.stock = req.body.stock),
       (productDetails.photos = []);
 
-    if (req.files.length) {
-      req.files.map((file, index) => {
-        productDetails.photos[index] = { filename: `${file.filename}` };
-      });
+    if (req.files.newProductPhotos) {
+      if (req.body.productPhotos) {
+        if (typeof req.body.productPhotos !== "string") {
+          console.log(req.body.productPhotos);
+          req.files.newProductPhotos.map((file, index) => {
+            productDetails.photos[index] = { filename: `${file.filename}` };
+          });
+
+          req.body.productPhotos.map((file, index) => {
+            productDetails.photos[index + req.files.newProductPhotos.length] = {
+              filename: JSON.parse(file).filename,
+            };
+          });
+        } else {
+          productDetails.photos[0] = {
+            filename: JSON.parse(req.body.productPhotos).filename,
+          };
+          req.files.newProductPhotos.map((file, index) => {
+            productDetails.photos[index + 1] = { filename: `${file.filename}` };
+          });
+        }
+      } else {
+        req.files.newProductPhotos.map((file, index) => {
+          productDetails.photos[index] = { filename: `${file.filename}` };
+        });
+      }
     } else {
-      req.body.productPhotos.map((file, index) => {
-        productDetails.photos[index] = {
-          filename: JSON.parse(file).filename,
+      if (typeof req.body.productPhotos !== "string") {
+        req.body.productPhotos.map((file, index) => {
+          productDetails.photos[index] = {
+            filename: JSON.parse(file).filename,
+          };
+        });
+      } else {
+        productDetails.photos[0] = {
+          filename: JSON.parse(req.body.productPhotos[0]).filename,
         };
-      });
+      }
     }
 
     productsModel.findByIdAndUpdate(
@@ -134,5 +162,20 @@ exports.getProductPhoto = (req, res) => {
         res.json({ image: null });
       }
     }
+  );
+};
+
+exports.deleteProductPhoto = (req, res) => {
+  productsModel.findByIdAndUpdate(
+    req.params.id,
+    { $pull: { photos: { filename: req.params.filename } } },
+    (error, data) => {
+      res.json(data);
+    }
+  );
+
+  fs.unlink(
+    `${process.env.UPLOADED_FILES_FOLDER}/${req.params.filename}`,
+    (err) => {}
   );
 };

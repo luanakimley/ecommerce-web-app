@@ -11,6 +11,7 @@ const {
   deleteProduct,
   editProduct,
   getProductPhoto,
+  deleteProductPhoto,
 } = require("../controllers/products");
 
 const {
@@ -39,13 +40,25 @@ router.delete(
   deleteProduct
 );
 router.put(
+  `/products/photo/:id/:filename`,
+  verifyUsersJWTPassword,
+  checkAdministrator,
+  deleteProductPhoto
+);
+router.put(
   `/products/:id`,
   verifyUsersJWTPassword,
   checkAdministrator,
-  upload.array(
-    "productPhotos",
-    parseInt(process.env.MAX_NUMBER_OF_UPLOAD_FILES_ALLOWED)
-  ),
+  upload.fields([
+    {
+      name: "productPhotos",
+      maxCount: parseInt(process.env.MAX_NUMBER_OF_UPLOAD_FILES_ALLOWED),
+    },
+    {
+      name: "newProductPhotos",
+      maxCount: parseInt(process.env.MAX_NUMBER_OF_UPLOAD_FILES_ALLOWED),
+    },
+  ]),
   jsonParser,
   editProduct
 );

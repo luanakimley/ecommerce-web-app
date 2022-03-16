@@ -30,6 +30,8 @@ class OrderDetails extends React.Component {
           this.setState({ products: products });
         });
 
+        this.setState({ user: "guest" });
+
         if (res.data.userId !== "undefined") {
           axios
             .get(`${SERVER_HOST}/users/${res.data.userId}`, {
@@ -39,7 +41,6 @@ class OrderDetails extends React.Component {
               this.setState({ user: res.data.email });
             });
         } else {
-          this.setState({ user: "guest" });
         }
       });
   }
@@ -48,7 +49,7 @@ class OrderDetails extends React.Component {
     return (
       <div className="d-flex flex-column align-items-center">
         <ShopBanner title="Order Details" />
-        <div className="hgvcfwqx container p-3">
+        <div className=" container p-3">
           <h4 className="text-center mb-4">Products</h4>
           {this.state.products.map((product) => (
             <OrderDetailsRow key={product._id} product={product} />
@@ -74,6 +75,10 @@ class OrderDetails extends React.Component {
             <span className="float-right">
               <strong>Paypal</strong>
             </span>
+          </div>
+          <div className="summary-item">
+            <span>Order by: </span>
+            <span className="float-right">{this.state.user}</span>
           </div>
           <div className="summary-item">
             <span>Subtotal: </span>
