@@ -17,6 +17,14 @@ const corsOptions = {
 };
 app.use(cors(corsOptions));
 
+const path = require("path");
+const appPath = path.join(__dirname, "..", "client", "build");
+app.use(express.static(appPath));
+
+app.get("/", (req, res) => {
+  res.sendFile(path.resolve(appPath, "index.html"));
+});
+
 // Routers
 app.use(require(`./routes/products`));
 app.use(require(`./routes/users`));

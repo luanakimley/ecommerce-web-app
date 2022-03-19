@@ -1,7 +1,7 @@
 import React from "react";
 import { Form } from "react-bootstrap";
 import axios from "axios";
-import { useParams, Redirect, withRouter } from "react-router-dom";
+import { Redirect, withRouter } from "react-router-dom";
 import { SERVER_HOST } from "../../config/global_constants";
 import Swal from "sweetalert2";
 

@@ -16,7 +16,7 @@ exports.verifyUsersJWTPassword = (req, res, next) => {
     { algorithm: "HS256" },
     (err, decodedToken) => {
       if (err) {
-        res.json({ errorMessage: `User is not logged in` });
+        return next(createError(500, "Email not registered"))
       } else {
         req.decodedToken = decodedToken;
         next();
@@ -121,7 +121,7 @@ exports.userRegister = (req, res, next) => {
         },
         (error, data) => {
           if (error) {
-            return next(error);
+            return next(createError(401, "User not registered"));
           }
 
           const token = jwt.sign(
@@ -141,7 +141,7 @@ exports.userRegister = (req, res, next) => {
 };
 
 // user sign in
-exports.userSignIn = (req, res) => {
+exports.userSignIn = (req, res, next) => {
   const token = jwt.sign(
     { email: req.data.email, accessLevel: req.data.accessLevel },
     JWT_PRIVATE_KEY,
@@ -186,12 +186,18 @@ exports.findUserById = (req, res, next) => {
 };
 
 // edit user password
-exports.editUserPassword = (req, res) => {
+exports.editUserPassword = (req, res, next) => {
   bcrypt.hash(
     req.body.password,
     parseInt(process.env.PASSWORD_HASH_SALT_ROUNDS),
     (err, hash) => {
+      if (err) {
+        return next(err);
+      }
       usersModel.updateOne({ password: hash }, (error, data) => {
+        if (error) {
+          return next(error);
+        }
         res.json(data);
       });
     }
@@ -199,7 +205,7 @@ exports.editUserPassword = (req, res) => {
 };
 
 // edit user
-exports.editUser = (req, res) => {
+exports.editUser = (req, res, next) => {
   let object = {};
   if (req.file) {
     object = {

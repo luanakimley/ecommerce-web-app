@@ -45,66 +45,60 @@ class Shop extends Component {
       url += `&sortBy=stock&orderBy=-1`;
     }
 
-    axios.get(url).then((res) => {
-      if (res.data) {
-        if (res.data.errorMessage) {
-          console.log(res.data.errorMessage);
-        } else {
-          console.log("Records read");
-          this.setState({ products: res.data });
-          this.setState({ category: "all items" });
-          const maxPrice = Math.max.apply(
-            Math,
-            this.state.products.map((p) => p.price)
-          );
-          const minPrice = Math.min.apply(
-            Math,
-            this.state.products.map((p) => p.price)
-          );
+    axios
+      .get(url)
+      .then((res) => {
+        console.log("Products read");
+        this.setState({ products: res.data });
+        this.setState({ category: "all items" });
+        const maxPrice = Math.max.apply(
+          Math,
+          this.state.products.map((p) => p.price)
+        );
+        const minPrice = Math.min.apply(
+          Math,
+          this.state.products.map((p) => p.price)
+        );
 
-          this.setState({ minPrice: minPrice });
-          this.setState({ maxPrice: maxPrice });
-          this.setState({ value: [minPrice, maxPrice] });
+        this.setState({ minPrice: minPrice });
+        this.setState({ maxPrice: maxPrice });
+        this.setState({ value: [minPrice, maxPrice] });
 
-          const productCategories = this.state.products.map(
-            (product) => product.categories
-          );
+        const productCategories = this.state.products.map(
+          (product) => product.categories
+        );
 
-          this.setState({
-            uniqueCategories: [...new Set(productCategories.flat(1))].sort(),
-          });
+        this.setState({
+          uniqueCategories: [...new Set(productCategories.flat(1))].sort(),
+        });
 
-          const productColours = this.state.products.map(
-            (product) => product.colours
-          );
+        const productColours = this.state.products.map(
+          (product) => product.colours
+        );
 
-          this.setState({
-            uniqueColours: [...new Set(productColours.flat(1))].sort(),
-          });
+        this.setState({
+          uniqueColours: [...new Set(productColours.flat(1))].sort(),
+        });
 
-          this.setState({ loading: false });
-        }
-      } else {
-        console.log("Record not found");
-      }
-    });
+        this.setState({ loading: false });
+      })
+      .catch((err) => {
+        console.log(err.response.data);
+      });
   };
 
   fetchItems(url) {
-    axios.get(url).then((res) => {
-      if (res.data) {
-        if (res.data.errorMessage) {
-          console.log(res.data.errorMessage);
-        } else {
-          console.log("Records read");
-          this.setState({
-            products: res.data,
-          });
-        }
-      } else {
-        console.log("Record not found");
-      }
-    });
+    axios
+      .get(url)
+      .then((res) => {
+        console.log("Records read");
+        this.setState({
+          products: res.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err.response.data);
+      });
   }
 
   handleCategoryFilter = (e) => {

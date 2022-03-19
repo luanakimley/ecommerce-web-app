@@ -19,7 +19,7 @@ class AddProduct extends React.Component {
       description: "",
       categories: [],
       selectedCategory: "",
-      stock: "",
+      stock: 0,
       colours: [],
       selectedColours: "",
       selectedFiles: null,
@@ -102,37 +102,25 @@ class AddProduct extends React.Component {
         headers: { authorization: localStorage.token },
       })
       .then((res) => {
-        if (res.data) {
-          if (res.data.errorMessage) {
-            console.log(res.data.errorMessage);
-            Swal.fire({
-              title: "Product not added",
-              text: res.data.errorMessage,
-              icon: "error",
-              showConfirmButton: true,
-              confirmButtonColor: "#123c69",
-            });
-          } else {
-            console.log("Record added");
-            Swal.fire({
-              title: "Product added",
-              text: "The product has been added.",
-              icon: "success",
-              showConfirmButton: false,
-              timer: 1500,
-            });
-            this.setState({ redirectToHome: true });
-          }
-        } else {
-          console.log("Product not added");
-          Swal.fire({
-            title: "Product not added",
-            text: "Make sure that data is valid and is not a duplicate.",
-            icon: "error",
-            showConfirmButton: true,
-            confirmButtonColor: "#123c69",
-          });
-        }
+        console.log("Product added");
+        Swal.fire({
+          title: "Product added",
+          text: "The product has been added.",
+          icon: "success",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        this.setState({ redirectToHome: true });
+      })
+      .catch((err) => {
+        console.log("Product not added");
+        Swal.fire({
+          title: "Product not added",
+          text: err.response.data,
+          icon: "error",
+          showConfirmButton: true,
+          confirmButtonColor: "#123c69",
+        });
       });
   };
 
@@ -164,7 +152,7 @@ class AddProduct extends React.Component {
 
   validatePhotos() {
     return (
-      this.state.selectedFiles !== null && this.state.selectedFiles.length < 2
+      this.state.selectedFiles !== null && this.state.selectedFiles.length >= 2
     );
   }
 
@@ -185,8 +173,6 @@ class AddProduct extends React.Component {
     const inputsAreAllValid = Object.keys(formInputsState).every(
       (index) => formInputsState[index]
     );
-
-    console.log(this.state.selectedFiles);
 
     let productNameError = "";
     let priceError = "";

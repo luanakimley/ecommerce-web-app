@@ -114,8 +114,9 @@ class Profile extends React.Component {
               icon: "success",
               showConfirmButton: false,
               timer: 1500,
+            }).then((res) => {
+              window.location.reload(false);
             });
-            this.setState({ redirectToHome: true });
           }
         } else {
           console.log("Changes not saved");

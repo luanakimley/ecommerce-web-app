@@ -1,9 +1,9 @@
 const productsModel = require("../models/products");
-const jwt = require("jsonwebtoken");
 const fs = require("fs");
+const createError = require("http-errors");
 
 // get all products
-exports.getAllProducts = (req, res) => {
+exports.getAllProducts = (req, res, next) => {
   const query = {};
   if (req.query.categories) {
     query.categories = req.query.categories;
@@ -17,7 +17,10 @@ exports.getAllProducts = (req, res) => {
   }
 
   if (req.query.q) {
-    query.productName = { $regex: req.query.q, $options: "i" };
+    query.$or = [
+      { productName: { $regex: req.query.q, $options: "i" } },
+      { categories: { $regex: req.query.q, $options: "i" } },
+    ];
   }
 
   const sortQuery = {};
@@ -33,28 +36,44 @@ exports.getAllProducts = (req, res) => {
 
   productsModel
     .find(query, (error, data) => {
+      if (error) {
+        return next(error);
+      }
+
+      if (!data) {
+        return next(createError(500, "Products not read"));
+      }
+
       res.json(data);
     })
     .sort(sortQuery);
 };
 
 // Read one record
-exports.getOneProduct = (req, res) => {
+exports.getOneProduct = (req, res, next) => {
   productsModel.findById(req.params.id, (error, data) => {
+    if (error) {
+      return next(error);
+    }
+
+    if (!data) {
+      return next(createError(500, "Product not read"));
+    }
+
     res.json(data);
   });
 };
 
 // add new product
-exports.addProduct = (req, res) => {
+exports.addProduct = (req, res, next) => {
   if (req.body.productName === "") {
-    res.json({ errorMessage: `Product name is required.` });
+    return next(createError(400, "Product name is required."));
   } else if (req.body.description === "") {
-    res.json({ errorMessage: `Product description is required.` });
+    return next(createError(400, "Product description is required."));
   } else if (req.body.price < 0) {
-    res.json({ errorMessage: `Price must be a positive number.` });
+    return next(createError(400, "Price must be a positive number."));
   } else if (req.body.stock < 0) {
-    res.json({ errorMessage: `Stock must be a positive number.` });
+    return next(createError(400, "Stock must be a positive number."));
   } else {
     let productDetails = new Object();
     (productDetails.productName = req.body.productName),
@@ -85,13 +104,13 @@ exports.deleteProduct = (req, res) => {
 // edit product
 exports.editProduct = (req, res) => {
   if (req.body.productName === "") {
-    res.json({ errorMessage: `Product name is required.` });
+    return next(createError(400, "Product name is required."));
   } else if (req.body.description === "") {
-    res.json({ errorMessage: `Product description is required.` });
+    return next(createError(400, "Product description is required."));
   } else if (req.body.price < 0) {
-    res.json({ errorMessage: `Price must be a positive number.` });
+    return next(createError(400, "Price must be a positive number."));
   } else if (req.body.stock < 0) {
-    res.json({ errorMessage: `Stock must be a positive number.` });
+    return next(createError(400, "Stock must be a positive number."));
   } else {
     let productDetails = new Object();
     (productDetails.productName = req.body.productName),
@@ -105,7 +124,6 @@ exports.editProduct = (req, res) => {
     if (req.files.newProductPhotos) {
       if (req.body.productPhotos) {
         if (typeof req.body.productPhotos !== "string") {
-          console.log(req.body.productPhotos);
           req.files.newProductPhotos.map((file, index) => {
             productDetails.photos[index] = { filename: `${file.filename}` };
           });

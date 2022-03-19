@@ -4,7 +4,6 @@ import { Form, Button, InputGroup } from "react-bootstrap";
 import Swal from "sweetalert2";
 import { XLg } from "react-bootstrap-icons";
 import axios from "axios";
-import { Trash } from "react-bootstrap-icons";
 import {
   SERVER_HOST,
   CATEGORIES,
@@ -21,7 +20,7 @@ class EditProduct extends React.Component {
       description: "",
       categories: [],
       selectedCategory: "",
-      stock: "",
+      stock: 0,
       colours: [],
       photos: [],
       selectedColours: "",
@@ -255,6 +254,14 @@ class EditProduct extends React.Component {
     return this.state.colours.length !== 0 && this.state.colours !== undefined;
   }
 
+  validatePhotos() {
+    if (this.state.selectedFiles) {
+      return this.state.selectedFiles.length + this.state.photos.length >= 2;
+    } else {
+      return this.state.photos.length >= 2;
+    }
+  }
+
   validate() {
     return {
       productName: this.validateProductName(),
@@ -263,6 +270,7 @@ class EditProduct extends React.Component {
       categories: this.validateCategories(),
       stock: this.validateStock(),
       colours: this.validateColours(),
+      photos: this.validatePhotos(),
     };
   }
 
@@ -278,6 +286,7 @@ class EditProduct extends React.Component {
     let categoriesError = "";
     let stockError = "";
     let coloursError = "";
+    let photosError = "";
 
     if (!this.validateProductName()) {
       productNameError = (
@@ -307,6 +316,11 @@ class EditProduct extends React.Component {
     if (!this.validateColours()) {
       coloursError = (
         <p className="text-danger mt-2">Choose at least 1 colour.</p>
+      );
+    }
+    if (!this.validatePhotos()) {
+      photosError = (
+        <p className="text-danger mt-2">Choose at least 2 photos.</p>
       );
     }
 
@@ -468,6 +482,7 @@ class EditProduct extends React.Component {
                     </div>
                   ))}
                 </div>
+                {photosError}
               </Form.Group>
 
               <br />

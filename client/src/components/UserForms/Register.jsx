@@ -226,21 +226,6 @@ class Register extends React.Component {
                   <p className="d-block text-center mt-3 ">
                     Have an account? <Link to="/login">Sign In</Link>
                   </p>
-
-                  <hr className="my-4" />
-
-                  <div className="d-grid mb-2">
-                    <button className="btn btn-lg btn-google btn-login fw-bold text-uppercase">
-                      <i className="fab fa-google me-2"></i> Sign up with Google
-                    </button>
-                  </div>
-
-                  <div className="d-grid">
-                    <button className="btn btn-lg btn-facebook btn-login fw-bold text-uppercase">
-                      <i className="fab fa-facebook-f me-2"></i> Sign up with
-                      Facebook
-                    </button>
-                  </div>
                 </Form>
               </div>
             </div>

@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
 import { Redirect } from "react-router-dom";
-import { SERVER_HOST, ACCESS_LEVEL_GUEST } from "../../config/global_constants";
+import { SERVER_HOST } from "../../config/global_constants";
 
 class LogOut extends React.Component {
   constructor(props) {
@@ -16,18 +16,10 @@ class LogOut extends React.Component {
     e.preventDefault();
 
     axios.post(`${SERVER_HOST}/users/logout`).then((res) => {
-      if (res.data) {
-        if (res.data.errorMessage) {
-          console.log(res.data.errorMessage);
-        } else {
-          console.log("User signed out");
-          localStorage.clear();
+      console.log("User signed out");
+      localStorage.clear();
 
-          this.setState({ isLoggedIn: false });
-        }
-      } else {
-        console.log("Sign out failed");
-      }
+      this.setState({ isLoggedIn: false });
     });
   };
 

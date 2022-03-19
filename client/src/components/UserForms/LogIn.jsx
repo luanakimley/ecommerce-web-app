@@ -37,7 +37,6 @@ class LogIn extends React.Component {
         this.setState({ isLoggedIn: true });
       })
       .catch((err) => {
-        console.log(err);
         Swal.fire({
           title: "User not signed in",
           text: err.response.data,
@@ -137,21 +136,6 @@ class LogIn extends React.Component {
                   <p className="d-block text-center mt-3 ">
                     Don't have an account? <Link to="/register">Register</Link>
                   </p>
-
-                  <hr className="my-4" />
-
-                  <div className="d-grid mb-2">
-                    <Button className="btn btn-lg btn-google btn-login fw-bold text-uppercase">
-                      <i className="fab fa-google me-2"></i> Sign up with Google
-                    </Button>
-                  </div>
-
-                  <div className="d-grid">
-                    <button className="btn btn-lg btn-facebook btn-login fw-bold text-uppercase">
-                      <i className="fab fa-facebook-f me-2"></i> Sign up with
-                      Facebook
-                    </button>
-                  </div>
                 </Form>
               </div>
             </div>
