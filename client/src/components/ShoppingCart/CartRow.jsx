@@ -134,44 +134,41 @@ class CartRow extends React.Component {
   };
 
   handleRemoveItem = (e) => {
-    axios.delete(`${SERVER_HOST}/cart/${this.state.cartId}`).then((res) => {
-      const MySwal = Swal.mixin({
-        customClass: {
-          confirmButton: "btn btn-success mr-2",
-          cancelButton: "btn btn-danger ml-2",
-        },
-        buttonsStyling: false,
-      });
+    let cartId = this.state.cartId;
+    const MySwal = Swal.mixin({
+      customClass: {
+        confirmButton: "btn btn-success mr-2",
+        cancelButton: "btn btn-danger ml-2",
+      },
+      buttonsStyling: false,
+    });
 
-      MySwal.fire({
-        title: "Remove item from shopping cart?",
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#5cb85c",
-        cancelButtonColor: "#d33",
-        confirmButtonText: "Yes, delete it!",
-      }).then((result) => {
-        if (result.isConfirmed) {
-          if (localStorage.accessLevel > parseInt(ACCESS_LEVEL_GUEST)) {
-            axios
-              .delete(`${SERVER_HOST}/cart/${this.state.cartId}}`)
-              .then((res) => {
-                window.location.reload(false);
-              });
-          } else {
-            let index = 0;
-            let curCart = JSON.parse(localStorage.cart);
-            curCart.forEach((item, i) => {
-              if (item.productId === this.props.item.productId) {
-                index = i;
-              }
-            });
-            curCart.splice(index, 1);
-            localStorage.cart = JSON.stringify(curCart);
+    MySwal.fire({
+      title: "Remove item from shopping cart?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#5cb85c",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        if (localStorage.accessLevel > parseInt(ACCESS_LEVEL_GUEST)) {
+          axios.delete(`${SERVER_HOST}/cart/${cartId}`).then((res) => {
             window.location.reload(false);
-          }
+          });
+        } else {
+          let index = 0;
+          let curCart = JSON.parse(localStorage.cart);
+          curCart.forEach((item, i) => {
+            if (item.productId === this.props.item.productId) {
+              index = i;
+            }
+          });
+          curCart.splice(index, 1);
+          localStorage.cart = JSON.stringify(curCart);
+          window.location.reload(false);
         }
-      });
+      }
     });
   };
 

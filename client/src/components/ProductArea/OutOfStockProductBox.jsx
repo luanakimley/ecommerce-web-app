@@ -31,10 +31,15 @@ export default class OutOfStockProductBox extends React.Component {
           <div className="product-img opacity-50">
             {this.props.product.photos.map((photo, index) => {
               if (index === 0) {
-                return <img alt="Product" id={photo._id} />;
+                return <img key={photo._id} alt="Product" id={photo._id} />;
               } else if (index === 1) {
                 return (
-                  <img alt="Product" id={photo._id} className="hover-img" />
+                  <img
+                    key={photo._id}
+                    alt="Product"
+                    id={photo._id}
+                    className="hover-img"
+                  />
                 );
               } else {
                 return null;
