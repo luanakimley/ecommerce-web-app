@@ -2,6 +2,7 @@ import React from "react";
 import ProfileTopBar from "../Account/AccountTopBar";
 import Password from "../Account/Password";
 import AllPurchases from "../Purchases/AllPurchases";
+import AllReturns from "../Purchases/AllReturns";
 import AllUsers from "./AllUsers";
 
 class DashboardGrid extends React.Component {
@@ -13,6 +14,7 @@ class DashboardGrid extends React.Component {
           {this.props.profilePage ? <AllUsers /> : null}
           {this.props.passwordPage ? <Password /> : null}
           {this.props.allPurchasesPage ? <AllPurchases /> : null}
+          {this.props.returnPage ? <AllReturns /> : null}
         </div>
       </div>
     );

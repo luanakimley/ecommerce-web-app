@@ -3,6 +3,9 @@ const mongoose = require(`mongoose`);
 let ordersProductSchema = new mongoose.Schema({
   productId: { type: String, required: true },
   quantity: { type: Number, required: true },
+  status: {type: String,
+    enum : ['Delivered','Returned'],
+    default: 'Delivered'}
 });
 
 let orderSchema = new mongoose.Schema(

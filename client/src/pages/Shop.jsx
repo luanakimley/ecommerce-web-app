@@ -39,6 +39,10 @@ class Shop extends Component {
       url += `&sortBy=price&orderBy=1`;
     } else if (this.state.sort === "priceDesc") {
       url += `&sortBy=price&orderBy=-1`;
+    } else if (this.state.sort === "stockAsc") {
+      url += `&sortBy=stock&orderBy=1`;
+    } else if (this.state.sort === "stockDesc") {
+      url += `&sortBy=stock&orderBy=-1`;
     }
 
     axios.get(url).then((res) => {
@@ -116,6 +120,10 @@ class Shop extends Component {
       url += `&sortBy=price&orderBy=1`;
     } else if (this.state.sort === "priceDesc") {
       url += `&sortBy=price&orderBy=-1`;
+    } else if (this.state.sort === "stockAsc") {
+      url += `&sortBy=stock&orderBy=1`;
+    } else if (this.state.sort === "stockDesc") {
+      url += `&sortBy=stock&orderBy=-1`;
     }
 
     this.fetchItems(url);
@@ -148,6 +156,10 @@ class Shop extends Component {
       url += `&sortBy=price&orderBy=1`;
     } else if (this.state.sort === "priceDesc") {
       url += `&sortBy=price&orderBy=-1`;
+    } else if (this.state.sort === "stockAsc") {
+      url += `&sortBy=stock&orderBy=1`;
+    } else if (this.state.sort === "stockDesc") {
+      url += `&sortBy=stock&orderBy=-1`;
     }
 
     this.fetchItems(url);
@@ -184,6 +196,10 @@ class Shop extends Component {
       url += `&sortBy=price&orderBy=1`;
     } else if (this.state.sort === "priceDesc") {
       url += `&sortBy=price&orderBy=-1`;
+    } else if (this.state.sort === "stockAsc") {
+      url += `&sortBy=stock&orderBy=1`;
+    } else if (this.state.sort === "stockDesc") {
+      url += `&sortBy=stock&orderBy=-1`;
     }
 
     this.fetchItems(url);
@@ -215,6 +231,10 @@ class Shop extends Component {
       url += `&sortBy=price&orderBy=1`;
     } else if (this.state.sort === "priceDesc") {
       url += `&sortBy=price&orderBy=-1`;
+    } else if (this.state.sort === "stockAsc") {
+      url += `&sortBy=stock&orderBy=1`;
+    } else if (this.state.sort === "stockDesc") {
+      url += `&sortBy=stock&orderBy=-1`;
     }
 
     this.fetchItems(url);
@@ -249,7 +269,13 @@ class Shop extends Component {
     } else if (e.target.value === "priceDesc") {
       url += `&sortBy=price&orderBy=-1`;
       this.setState({ sort: e.target.value });
-    } else if (e.target.value === "") {
+    } else if (e.target.value === "stockAsc") {
+      url += `&sortBy=stock&orderBy=1`;
+      this.setState({ sort: e.target.value });
+    } else if (e.target.value === "stockDesc") {
+      url += `&sortBy=stock&orderBy=-1`;
+      this.setState({ sort: e.target.value });
+    } else {
       this.setState({ sort: "" });
     }
 

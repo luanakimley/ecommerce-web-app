@@ -62,6 +62,9 @@ export default class ProductBox extends React.Component {
                 <h6>{this.props.product.productName}</h6>
               </a>
             </Link>
+
+            <span>Stock: {this.props.product.stock}</span>
+
             <p className="product-price">
               €{(Math.round(this.props.product.price * 100) / 100).toFixed(2)}
             </p>

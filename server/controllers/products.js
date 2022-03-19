@@ -26,6 +26,8 @@ exports.getAllProducts = (req, res) => {
       sortQuery.productName = parseInt(req.query.orderBy);
     } else if (req.query.sortBy === "price") {
       sortQuery.price = parseInt(req.query.orderBy);
+    } else if (req.query.sortBy === "stock") {
+      sortQuery.stock = parseInt(req.query.orderBy);
     }
   }
 

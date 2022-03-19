@@ -57,3 +57,9 @@ exports.getOneOrder = (req, res, next) => {
   });
 };
 
+exports.getOrderProduct = (req, res, next) => {
+  ordersModel.find(
+    { products: { $elemMatch: { _id: req.params.id } } },
+    (err, data) => res.json(data)
+  );
+};

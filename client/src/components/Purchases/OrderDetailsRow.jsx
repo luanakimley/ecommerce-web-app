@@ -64,6 +64,7 @@ class OrderDetailsRow extends React.Component {
                 <div className="col-md-5 ml-4">
                   <div>
                     <h6>{this.state.productName}</h6>
+                    <p>{this.props.product.status}</p>
                   </div>
                 </div>
                 <div className="ml-2 w-30 quantity-details">

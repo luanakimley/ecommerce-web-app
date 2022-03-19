@@ -56,7 +56,7 @@ class OrderDetails extends React.Component {
           ))}
           <Link
             to={{
-              pathname: `/return/${this.props.location.state.order._id}`,
+              pathname: `/order/return/${this.props.location.state.order._id}`,
               state: {
                 order: this.props.location.state.order,
               },
@@ -89,7 +89,7 @@ class OrderDetails extends React.Component {
           <div className="summary-item">
             <span>Shipping cost: </span>
             <span className="float-right">
-              €{this.props.location.state.order.shippingCost}{" "}
+              €{this.props.location.state.order.shippingCost}
             </span>
           </div>
           <div className="summary-item mt-3">

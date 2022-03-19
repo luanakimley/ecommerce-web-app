@@ -1,5 +1,5 @@
 import React from "react";
-import { People, Shop, Key } from "react-bootstrap-icons";
+import { People, Shop, Arrow90degLeft } from "react-bootstrap-icons";
 import ShopBanner from "../components/ShopBanner";
 import DashboardGrid from "../components/AdminDashboard/DashboardGrid";
 
@@ -10,6 +10,7 @@ class AdminDashboard extends React.Component {
       title: "all users",
       profilePage: true,
       allPurchasesPage: false,
+      returnPage: false,
     };
   }
 
@@ -18,9 +19,23 @@ class AdminDashboard extends React.Component {
   };
 
   toggleProfile() {
-    this.setState({ title: "All Users" });
+    this.setState({ title: "profile" });
     this.setState({ profilePage: true });
     this.setState({ allPurchasesPage: false });
+    this.setState({ returnPage: false });
+    this.setState({ passwordPage: false });
+  }
+
+  handlePasswordClick = (e) => {
+    this.togglePassword();
+  };
+
+  togglePassword() {
+    this.setState({ title: "password" });
+    this.setState({ profilePage: false });
+    this.setState({ allPurchasesPage: false });
+    this.setState({ passwordPage: true });
+    this.setState({ returnPage: false });
   }
 
   handleAllPurchasesClick = (e) => {
@@ -28,9 +43,23 @@ class AdminDashboard extends React.Component {
   };
 
   togglePurchases() {
-    this.setState({ title: "All Purchases" });
+    this.setState({ title: "My Purchases" });
     this.setState({ profilePage: false });
     this.setState({ allPurchasesPage: true });
+    this.setState({ passwordPage: false });
+    this.setState({ returnPage: false });
+  }
+
+  handleReturnsClick = (e) => {
+    this.toggleReturns();
+  };
+
+  toggleReturns() {
+    this.setState({ title: "Returns" });
+    this.setState({ profilePage: false });
+    this.setState({ allPurchasesPage: false });
+    this.setState({ passwordPage: false });
+    this.setState({ returnPage: true });
   }
 
   render() {
@@ -64,6 +93,12 @@ class AdminDashboard extends React.Component {
                             All Purchases
                           </a>
                         </li>
+                        <li onClick={this.handleReturnsClick}>
+                          <a>
+                            <Arrow90degLeft className="mr-2 mb-0" />
+                            All Returns
+                          </a>
+                        </li>
                       </ul>
                     </div>
                   </div>
@@ -73,6 +108,7 @@ class AdminDashboard extends React.Component {
                 title={this.state.title}
                 profilePage={this.state.profilePage}
                 allPurchasesPage={this.state.allPurchasesPage}
+                returnPage={this.state.returnPage}
               />
             </div>
           </div>

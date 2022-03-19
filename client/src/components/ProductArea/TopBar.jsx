@@ -27,8 +27,10 @@ class TopBar extends React.Component {
                   <option value="">None</option>
                   <option value="nameAsc">Name: A-Z</option>
                   <option value="nameDesc">Name: Z-A</option>
-                  <option value="priceAsc">Price: $ - $$</option>
-                  <option value="priceDesc">Price: $$ - $</option>
+                  <option value="priceAsc">Price: $-$$</option>
+                  <option value="priceDesc">Price: $$-$</option>
+                  <option value="stockAsc">Stock: low-high</option>
+                  <option value="stockDesc">Stock: high-low</option>
                 </select>
                 <input type="submit" className="d-none" value="" />
               </form>

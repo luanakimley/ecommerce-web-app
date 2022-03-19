@@ -3,6 +3,7 @@ import ProfileTopBar from "./AccountTopBar";
 import Profile from "./Profile";
 import Password from "./Password";
 import AllPurchases from "../Purchases/AllPurchases";
+import AllReturns from "../Purchases/AllReturns";
 
 class AccountGrid extends React.Component {
   render() {
@@ -13,6 +14,7 @@ class AccountGrid extends React.Component {
           {this.props.profilePage ? <Profile /> : null}
           {this.props.passwordPage ? <Password /> : null}
           {this.props.allPurchasesPage ? <AllPurchases /> : null}
+          {this.props.returnPage ? <AllReturns /> : null}
         </div>
       </div>
     );

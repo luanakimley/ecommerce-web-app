@@ -1,6 +1,6 @@
 import React from "react";
 import AccountGrid from "../components/Account/AccountGrid";
-import { Person, Bag, Key } from "react-bootstrap-icons";
+import { Person, Bag, Key, Arrow90degLeft } from "react-bootstrap-icons";
 import ShopBanner from "../components/ShopBanner";
 
 class Account extends React.Component {
@@ -11,6 +11,7 @@ class Account extends React.Component {
       profilePage: true,
       allPurchasesPage: false,
       passwordPage: false,
+      returnPage: false,
     };
   }
 
@@ -22,6 +23,7 @@ class Account extends React.Component {
     this.setState({ title: "profile" });
     this.setState({ profilePage: true });
     this.setState({ allPurchasesPage: false });
+    this.setState({ returnPage: false });
     this.setState({ passwordPage: false });
   }
 
@@ -34,6 +36,7 @@ class Account extends React.Component {
     this.setState({ profilePage: false });
     this.setState({ allPurchasesPage: false });
     this.setState({ passwordPage: true });
+    this.setState({ returnPage: false });
   }
 
   handleAllPurchasesClick = (e) => {
@@ -45,6 +48,19 @@ class Account extends React.Component {
     this.setState({ profilePage: false });
     this.setState({ allPurchasesPage: true });
     this.setState({ passwordPage: false });
+    this.setState({ returnPage: false });
+  }
+
+  handleReturnsClick = (e) => {
+    this.toggleReturns();
+  };
+
+  toggleReturns() {
+    this.setState({ title: "Returns" });
+    this.setState({ profilePage: false });
+    this.setState({ allPurchasesPage: false });
+    this.setState({ passwordPage: false });
+    this.setState({ returnPage: true });
   }
 
   render() {
@@ -84,6 +100,12 @@ class Account extends React.Component {
                             My Purchases
                           </a>
                         </li>
+                        <li onClick={this.handleReturnsClick}>
+                          <a>
+                            <Arrow90degLeft className="mr-2 mb-0" />
+                            Returns
+                          </a>
+                        </li>
                       </ul>
                     </div>
                   </div>
@@ -94,6 +116,7 @@ class Account extends React.Component {
                 profilePage={this.state.profilePage}
                 allPurchasesPage={this.state.allPurchasesPage}
                 passwordPage={this.state.passwordPage}
+                returnPage={this.state.returnPage}
               />
             </div>
           </div>

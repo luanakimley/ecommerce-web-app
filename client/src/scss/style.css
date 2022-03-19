@@ -61,7 +61,8 @@ a {
   font-size: 12px;
 }
 
-a:hover, a:focus {
+a:hover,
+a:focus {
   -webkit-transition: all 500ms ease 0s;
   transition: all 500ms ease 0s;
   text-decoration: none;
@@ -266,7 +267,7 @@ img {
   border-radius: 0;
   bottom: 60px;
   -webkit-box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.3);
-          box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.3);
+  box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.3);
   color: #ffffff;
   font-size: 24px;
   height: 40px;
@@ -300,7 +301,8 @@ img {
   font-weight: 600;
 }
 
-.essence-btn:hover, .essence-btn:focus {
+.essence-btn:hover,
+.essence-btn:focus {
   color: #ffffff;
   background-color: #b7d4e2;
 }
@@ -489,11 +491,11 @@ img {
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
   -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
   text-align: center;
   border-left: 1px solid #ebebeb;
   height: 100%;
@@ -571,7 +573,7 @@ img {
   left: 0;
   width: 100%;
   -webkit-box-shadow: 0 5px 30px rgba(0, 0, 0, 0.15);
-          box-shadow: 0 5px 30px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 5px 30px rgba(0, 0, 0, 0.15);
 }
 
 /* :: 5.0 Welcome Area CSS */
@@ -810,7 +812,7 @@ img {
   line-height: 25px;
   background-color: #ffffff;
   -webkit-box-shadow: 0 0 3px rgba(0, 0, 0, 0.15);
-          box-shadow: 0 0 3px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.15);
   text-align: center;
   opacity: 0;
   visibility: hidden;
@@ -885,7 +887,7 @@ img {
 
 .single-product-wrapper .favme.is_animating {
   -webkit-animation: favme-anime 0.5s;
-          animation: favme-anime 0.5s;
+  animation: favme-anime 0.5s;
 }
 
 .single-product-wrapper:hover .product-img .hover-img {
@@ -974,10 +976,11 @@ img {
   color: #787878;
 }
 
-.pagination .page-item .page-link:hover, .pagination .page-item .page-link:focus {
+.pagination .page-item .page-link:hover,
+.pagination .page-item .page-link:focus {
   color: #dbb999;
   -webkit-box-shadow: none;
-          box-shadow: none;
+  box-shadow: none;
 }
 
 .pagination .page-item:first-child {
@@ -1143,7 +1146,11 @@ img {
   width: 100%;
 }
 
-.single_product_details_area .single_product_desc .nice-select .list .option.selected {
+.single_product_details_area
+  .single_product_desc
+  .nice-select
+  .list
+  .option.selected {
   color: #dbb999;
 }
 
@@ -1181,7 +1188,8 @@ img {
   text-transform: capitalize;
 }
 
-.footer_area .single_widget_area .footer_menu ul li a:hover, .footer_area .single_widget_area .footer_menu ul li a:focus {
+.footer_area .single_widget_area .footer_menu ul li a:hover,
+.footer_area .single_widget_area .footer_menu ul li a:focus {
   color: #ffffff;
 }
 
@@ -1209,7 +1217,8 @@ img {
   margin-bottom: 10px;
 }
 
-.footer_area .single_widget_area .footer_widget_menu li a:hover, .footer_area .single_widget_area .footer_widget_menu li a:focus {
+.footer_area .single_widget_area .footer_widget_menu li a:hover,
+.footer_area .single_widget_area .footer_widget_menu li a:focus {
   color: #ffffff;
 }
 
@@ -1436,11 +1445,11 @@ img {
   display: flex;
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
 }
 
 .widget.color .widget-desc ul li p {
@@ -1460,7 +1469,7 @@ img {
   z-index: 1;
   border: #ccc solid 1px;
   -webkit-box-shadow: 0 0 3px rgba(0, 0, 0, 0.15);
-          box-shadow: 0 0 3px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.15);
 }
 
 .widget.brands ul li {
@@ -1737,10 +1746,11 @@ img {
   top: 50%;
   left: 50%;
   -webkit-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
   text-align: center;
   background-color: #324793;
   opacity: 90%;
   color: white;
 }
 /*# sourceMappingURL=style.css.map */
+
