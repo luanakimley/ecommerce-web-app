@@ -78,7 +78,7 @@ export default class SingleProduct extends React.Component {
                     "/" +
                     this.props.location.state.product.stock,
                   state: {
-                    navTo: `/shop`,
+                    navTo: `/`,
                   },
                 }}
               >

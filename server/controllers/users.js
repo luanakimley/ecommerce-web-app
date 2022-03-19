@@ -16,7 +16,7 @@ exports.verifyUsersJWTPassword = (req, res, next) => {
     { algorithm: "HS256" },
     (err, decodedToken) => {
       if (err) {
-        return next(createError(500, "Email not registered"))
+        return next(createError(500, "User not signed in"));
       } else {
         req.decodedToken = decodedToken;
         next();

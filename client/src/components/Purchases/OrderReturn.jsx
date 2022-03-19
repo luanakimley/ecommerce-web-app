@@ -108,7 +108,7 @@ class OrderReturn extends React.Component {
   render() {
     return (
       <div className="d-flex flex-column align-items-center">
-        {this.state.redirect ? <Redirect to="/shop" /> : null}
+        {this.state.redirect ? <Redirect to="/" /> : null}
         <ShopBanner title="Order Return" />
         <div className="hgvcfwqx container p-3">
           <h4 className="text-center mb-4">Select items to return</h4>

@@ -85,24 +85,29 @@ export default class ProductBox extends React.Component {
             ) : null}
 
             <div className="hover-content">
-              <div className="add-to-cart-btn">
-                <Link
-                  to={{
-                    pathname:
-                      "/addtocart/" +
-                      this.props.product._id +
-                      "/" +
-                      this.props.product.price +
-                      "/" +
-                      this.props.product.stock,
-                    state: { navTo: "/shop" },
-                  }}
-                >
-                  <button onClick={this.addToCart} className="btn essence-btn">
-                    Add to Cart
-                  </button>
-                </Link>
-              </div>
+              {parseInt(localStorage.accessLevel) < ACCESS_LEVEL_ADMIN ? (
+                <div className="add-to-cart-btn">
+                  <Link
+                    to={{
+                      pathname:
+                        "/addtocart/" +
+                        this.props.product._id +
+                        "/" +
+                        this.props.product.price +
+                        "/" +
+                        this.props.product.stock,
+                      state: { navTo: "/" },
+                    }}
+                  >
+                    <button
+                      onClick={this.addToCart}
+                      className="btn essence-btn"
+                    >
+                      Add to Cart
+                    </button>
+                  </Link>
+                </div>
+              ) : null}
             </div>
           </div>
         </div>

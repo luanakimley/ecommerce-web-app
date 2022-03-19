@@ -74,7 +74,6 @@ class App extends React.Component {
           <Route exact path="/orders/:id" component={OrderDetails} />
           <Route exact path="/order/return/:id" component={OrderReturn} />
           <Route exact path="/return/:id" component={ReturnDetails} />
-
         </Switch>
       </BrowserRouter>
     );

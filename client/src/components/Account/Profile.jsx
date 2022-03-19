@@ -153,7 +153,7 @@ class Profile extends React.Component {
 
     return (
       <Form>
-        {this.state.redirectToHome ? <Redirect to="/shop" /> : null}
+        {this.state.redirectToHome ? <Redirect to="/" /> : null}
         <div className="form-floating mb-3">
           <label>Profile Picture</label>
           <br />
@@ -166,7 +166,11 @@ class Profile extends React.Component {
             />
           ) : null}
           <br />
-          <input type="file" onChange={this.handleFileChange} />
+          <input
+            type="file"
+            onChange={this.handleFileChange}
+            accept="image/png, image/jpg, image/jpeg"
+          />
         </div>
 
         <div className="form-floating mb-3">

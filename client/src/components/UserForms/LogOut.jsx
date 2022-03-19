@@ -34,7 +34,7 @@ class LogOut extends React.Component {
         {!this.state.isLoggedIn ? (
           this.refreshPage()
         ) : localStorage.accessLevel == 0 ? (
-          <Redirect to="/shop" />
+          <Redirect to="/" />
         ) : null}
 
         <button className="btn btn-danger" onClick={this.handleSubmit}>

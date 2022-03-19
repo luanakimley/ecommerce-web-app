@@ -150,7 +150,7 @@ class Register extends React.Component {
 
     return (
       <div className="container">
-        {this.state.isRegistered ? <Redirect to="/shop" /> : null}
+        {this.state.isRegistered ? <Redirect to="/" /> : null}
         <div className="row">
           <div className="col-lg-10 col-xl-9 mx-auto">
             <div className="card flex-row my-5 border-0 shadow rounded-3 overflow-hidden">

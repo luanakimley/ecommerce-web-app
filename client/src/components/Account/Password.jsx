@@ -136,7 +136,7 @@ class Password extends React.Component {
 
     return (
       <Form>
-        {this.state.redirectToHome ? <Redirect to="/shop" /> : null}
+        {this.state.redirectToHome ? <Redirect to="/" /> : null}
         <div className="form-floating mb-3">
           <label>Current password</label>
           <input

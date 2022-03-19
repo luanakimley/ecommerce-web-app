@@ -1,7 +1,7 @@
 {
-  "name": "mearn-stack-server",
+  "name": "milky-sky-server",
   "version": "1.0.0",
-  "description": "MERN Stack server",
+  "description": "Milky Sky server",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

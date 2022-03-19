@@ -326,7 +326,7 @@ class EditProduct extends React.Component {
 
     return (
       <div className="container p-3">
-        {this.state.redirectToHome ? <Redirect to="/shop" /> : null}
+        {this.state.redirectToHome ? <Redirect to="/" /> : null}
 
         <div className="card flex-column border-0 shadow rounded-3 overflow-hidden p-4 m-4">
           <h2 className=" text-center mt-3  ">Edit Product</h2>
@@ -461,6 +461,7 @@ class EditProduct extends React.Component {
                   type="file"
                   multiple
                   onChange={this.handleFileChange}
+                  accept="image/png, image/jpg, image/jpeg"
                 />
                 <div className="d-flex">
                   {this.state.photos.map((photo) => (

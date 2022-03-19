@@ -81,7 +81,7 @@ export default class Checkout extends React.Component {
 
     return (
       <div>
-        {this.state.redirectToHome ? <Redirect to="/shop" /> : null}
+        {this.state.redirectToHome ? <Redirect to="/" /> : null}
         <PayPalButton
           options={{
             clientId: client_id,

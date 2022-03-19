@@ -25,6 +25,38 @@ app.get("/", (req, res) => {
   res.sendFile(path.resolve(appPath, "index.html"));
 });
 
+app.get("/shop", (req, res) => {
+  res.sendFile(path.resolve(appPath, "index.html"));
+});
+
+app.get("/login", (req, res) => {
+  res.sendFile(path.resolve(appPath, "index.html"));
+});
+
+app.get("/account/*", (req, res) => {
+  res.sendFile(path.resolve(appPath, "index.html"));
+});
+
+app.get("/orders/*", (req, res) => {
+  res.sendFile(path.resolve(appPath, "index.html"));
+});
+
+app.get("/order/return/*", (req, res) => {
+  res.sendFile(path.resolve(appPath, "index.html"));
+});
+
+app.get("/return/*", (req, res) => {
+  res.sendFile(path.resolve(appPath, "index.html"));
+});
+
+app.get("/shoppingcart", (req, res) => {
+  res.sendFile(path.resolve(appPath, "index.html"));
+});
+
+app.get("/admindashboard", (req, res) => {
+  res.sendFile(path.resolve(appPath, "index.html"));
+});
+
 // Routers
 app.use(require(`./routes/products`));
 app.use(require(`./routes/users`));

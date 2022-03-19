@@ -11,7 +11,7 @@ const AdministratorRoute = ({ component: Component, exact, path, ...rest }) => (
       parseInt(localStorage.accessLevel) === ACCESS_LEVEL_ADMIN ? (
         <Component {...props} {...rest} />
       ) : (
-        <Redirect to="/shop" />
+        <Redirect to="/" />
       )
     }
   />

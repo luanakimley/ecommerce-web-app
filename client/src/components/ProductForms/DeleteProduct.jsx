@@ -74,7 +74,7 @@ class DeleteProduct extends React.Component {
 
   render() {
     return (
-      <div>{this.state.redirectToHome ? <Redirect to="/shop" /> : null}</div>
+      <div>{this.state.redirectToHome ? <Redirect to="/" /> : null}</div>
     );
   }
 }

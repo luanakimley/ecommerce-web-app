@@ -87,7 +87,7 @@ class LogIn extends React.Component {
             timer: 1500,
           }).then((res) => this.refreshPage())
         ) : localStorage.accessLevel != 0 ? (
-          <Redirect to="/shop" />
+          <Redirect to="/" />
         ) : null}
         <div className="row">
           <div className="col-lg-10 col-xl-9 mx-auto">

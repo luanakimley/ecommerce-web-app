@@ -220,7 +220,7 @@ class AddProduct extends React.Component {
 
     return (
       <div className="container p-3">
-        {this.state.redirectToHome ? <Redirect to="/shop" /> : null}
+        {this.state.redirectToHome ? <Redirect to="/" /> : null}
 
         <div className="card flex-column border-0 shadow rounded-3 overflow-hidden p-4 m-4">
           <h2 className=" text-center mt-3  ">Add Product</h2>
@@ -348,6 +348,7 @@ class AddProduct extends React.Component {
                 <Form.Label>Photos</Form.Label>
                 <Form.Control
                   type="file"
+                  accept="image/png, image/jpg, image/jpeg"
                   multiple
                   onChange={this.handleFileChange}
                 />

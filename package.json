@@ -1,0 +1,14 @@
+{
+  "name": "development",
+  "version": "1.0.0",
+  "description": "Local host Development Server",
+  "main": "server.js",
+  "scripts": {
+    "start": "npm start --prefix server"
+  },
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "author": "Luana Kimley",
+  "license": "ISC"
+}
