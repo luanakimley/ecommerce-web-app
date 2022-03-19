@@ -33,19 +33,19 @@ app.get("/login", (req, res) => {
   res.sendFile(path.resolve(appPath, "index.html"));
 });
 
-app.get("/account/*", (req, res) => {
+app.get("/account", (req, res) => {
   res.sendFile(path.resolve(appPath, "index.html"));
 });
 
-app.get("/orders/*", (req, res) => {
+app.get("/orders", (req, res) => {
   res.sendFile(path.resolve(appPath, "index.html"));
 });
 
-app.get("/order/return/*", (req, res) => {
+app.get("/order/return", (req, res) => {
   res.sendFile(path.resolve(appPath, "index.html"));
 });
 
-app.get("/return/*", (req, res) => {
+app.get("/return", (req, res) => {
   res.sendFile(path.resolve(appPath, "index.html"));
 });
 
