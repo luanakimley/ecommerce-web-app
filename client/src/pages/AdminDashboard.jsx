@@ -19,7 +19,7 @@ class AdminDashboard extends React.Component {
   };
 
   toggleProfile() {
-    this.setState({ title: "profile" });
+    this.setState({ title: "users" });
     this.setState({ profilePage: true });
     this.setState({ allPurchasesPage: false });
     this.setState({ returnPage: false });
@@ -43,7 +43,7 @@ class AdminDashboard extends React.Component {
   };
 
   togglePurchases() {
-    this.setState({ title: "My Purchases" });
+    this.setState({ title: "All Purchases" });
     this.setState({ profilePage: false });
     this.setState({ allPurchasesPage: true });
     this.setState({ passwordPage: false });

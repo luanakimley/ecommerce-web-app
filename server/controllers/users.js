@@ -194,12 +194,16 @@ exports.editUserPassword = (req, res, next) => {
       if (err) {
         return next(err);
       }
-      usersModel.updateOne({ password: hash }, (error, data) => {
-        if (error) {
-          return next(error);
+      usersModel.findByIdAndUpdate(
+        req.params.id,
+        { password: hash },
+        (error, data) => {
+          if (error) {
+            return next(error);
+          }
+          res.json(data);
         }
-        res.json(data);
-      });
+      );
     }
   );
 };

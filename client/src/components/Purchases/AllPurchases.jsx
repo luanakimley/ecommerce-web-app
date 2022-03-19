@@ -29,6 +29,7 @@ class AllPurchases extends React.Component {
             if (res.data.errorMessage) {
               console.log(res.data.errorMessage);
             } else {
+              console.log(res.data);
               console.log("Orders record read");
               this.setState({ orders: res.data });
             }

@@ -33,19 +33,7 @@ app.get("/login", (req, res) => {
   res.sendFile(path.resolve(appPath, "index.html"));
 });
 
-app.get("/account", (req, res) => {
-  res.sendFile(path.resolve(appPath, "index.html"));
-});
-
-app.get("/orders", (req, res) => {
-  res.sendFile(path.resolve(appPath, "index.html"));
-});
-
-app.get("/order/return", (req, res) => {
-  res.sendFile(path.resolve(appPath, "index.html"));
-});
-
-app.get("/return", (req, res) => {
+app.get("/account/*", (req, res) => {
   res.sendFile(path.resolve(appPath, "index.html"));
 });
 
@@ -54,6 +42,18 @@ app.get("/shoppingcart", (req, res) => {
 });
 
 app.get("/admindashboard", (req, res) => {
+  res.sendFile(path.resolve(appPath, "index.html"));
+});
+
+app.get("/purchases", (req, res) => {
+  res.sendFile(path.resolve(appPath, "index.html"));
+});
+
+app.get("/returns", (req, res) => {
+  res.sendFile(path.resolve(appPath, "index.html"));
+});
+
+app.get("/editproduct/*", (req, res) => {
   res.sendFile(path.resolve(appPath, "index.html"));
 });
 

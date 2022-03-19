@@ -2,8 +2,6 @@ import React from "react";
 import ProfileTopBar from "./AccountTopBar";
 import Profile from "./Profile";
 import Password from "./Password";
-import AllPurchases from "../Purchases/AllPurchases";
-import AllReturns from "../Purchases/AllReturns";
 
 class AccountGrid extends React.Component {
   render() {
@@ -11,10 +9,8 @@ class AccountGrid extends React.Component {
       <div className="col-12 col-md-8 col-lg-9">
         <div className="shop_grid_product_area ml-5 mr-5">
           <ProfileTopBar title={this.props.title} />
-          {this.props.profilePage ? <Profile /> : null}
+          <Profile />
           {this.props.passwordPage ? <Password /> : null}
-          {this.props.allPurchasesPage ? <AllPurchases /> : null}
-          {this.props.returnPage ? <AllReturns /> : null}
         </div>
       </div>
     );

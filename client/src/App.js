@@ -23,6 +23,9 @@ import AddToCart from "./components/ShoppingCart/AddToCart";
 import OrderDetails from "./components/Purchases/OrderDetails";
 import OrderReturn from "./components/Purchases/OrderReturn";
 import ReturnDetails from "./components/Purchases/ReturnDetails";
+import Purchases from "./pages/Purchases";
+import Returns from "./pages/Returns";
+import ChangePassword from "./pages/ChangePassword";
 
 if (typeof localStorage.accessLevel === "undefined") {
   localStorage.name = "GUEST";
@@ -74,6 +77,9 @@ class App extends React.Component {
           <Route exact path="/orders/:id" component={OrderDetails} />
           <Route exact path="/order/return/:id" component={OrderReturn} />
           <Route exact path="/return/:id" component={ReturnDetails} />
+          <Route exact path="/purchases" component={Purchases} />
+          <Route exact path="/returns" component={Returns} />
+          <Route exact path="/password" component={ChangePassword} />
         </Switch>
       </BrowserRouter>
     );

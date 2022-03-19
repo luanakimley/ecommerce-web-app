@@ -27,7 +27,7 @@ class Profile extends React.Component {
     axios.defaults.withCredentials = true;
 
     axios
-      .get(`${SERVER_HOST}/users/${this.props.match.params.id}`, {
+      .get(`${SERVER_HOST}/users/${localStorage._id}`, {
         headers: { authorization: localStorage.token },
       })
       .then((res) => {
@@ -115,6 +115,7 @@ class Profile extends React.Component {
               showConfirmButton: false,
               timer: 1500,
             }).then((res) => {
+              localStorage.name = this.state.name;
               window.location.reload(false);
             });
           }

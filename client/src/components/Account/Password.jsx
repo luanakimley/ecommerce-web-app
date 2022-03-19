@@ -47,7 +47,7 @@ class Password extends React.Component {
 
     axios
       .put(
-        `${SERVER_HOST}/users/${this.props.match.params.id}/${this.state.oldPassword}`,
+        `${SERVER_HOST}/users/${localStorage._id}/${this.state.oldPassword}`,
         passwordObject,
         { headers: { authorization: localStorage.token } }
       )
@@ -136,7 +136,7 @@ class Password extends React.Component {
 
     return (
       <Form>
-        {this.state.redirectToHome ? <Redirect to="/" /> : null}
+        {this.state.redirectToHome ? <Redirect to="/shop" /> : null}
         <div className="form-floating mb-3">
           <label>Current password</label>
           <input
