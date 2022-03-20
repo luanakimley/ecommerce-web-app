@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-import { SERVER_HOST } from "../../config/global_constants";
+import { ACCESS_LEVEL_ADMIN, SERVER_HOST } from "../../config/global_constants";
 import ShopBanner from "../ShopBanner";
 import OrderDetailsRow from "./OrderDetailsRow";
 import { Link } from "react-router-dom";
@@ -40,7 +40,7 @@ class OrderDetails extends React.Component {
             .then((res) => {
               this.setState({ user: res.data.email });
             });
-        } 
+        }
       });
   }
 
@@ -53,18 +53,20 @@ class OrderDetails extends React.Component {
           {this.state.products.map((product) => (
             <OrderDetailsRow key={product._id} product={product} />
           ))}
-          <Link
-            to={{
-              pathname: `/order/return/${this.props.location.state.order._id}`,
-              state: {
-                order: this.props.location.state.order,
-              },
-            }}
-          >
-            <p className="text-center m-1">
-              <u>Return item?</u>
-            </p>
-          </Link>
+          {parseInt(localStorage.accessLevel) < ACCESS_LEVEL_ADMIN ? (
+            <Link
+              to={{
+                pathname: `/order/return/${this.props.location.state.order._id}`,
+                state: {
+                  order: this.props.location.state.order,
+                },
+              }}
+            >
+              <p className="text-center m-1">
+                <u>Return item?</u>
+              </p>
+            </Link>
+          ) : null}
         </div>
 
         <div className="bg-light p-3 order-details-summary mb-4">
