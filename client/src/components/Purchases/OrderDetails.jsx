@@ -40,8 +40,7 @@ class OrderDetails extends React.Component {
             .then((res) => {
               this.setState({ user: res.data.email });
             });
-        } else {
-        }
+        } 
       });
   }
 

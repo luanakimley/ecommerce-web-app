@@ -23,6 +23,18 @@ class ReturnDetails extends React.Component {
       })
       .then((res) => {
         this.setState({ products: res.data.products });
+
+        this.setState({ user: "guest" });
+
+        if (res.data.userId !== "undefined") {
+          axios
+            .get(`${SERVER_HOST}/users/${res.data.userId}`, {
+              headers: { authorization: localStorage.token },
+            })
+            .then((res) => {
+              this.setState({ user: res.data.email });
+            });
+        }
       });
   }
 
@@ -44,6 +56,10 @@ class ReturnDetails extends React.Component {
             <span className="float-right">
               <strong>Paypal</strong>
             </span>
+          </div>
+          <div className="summary-item">
+            <span>Return by: </span>
+            <span className="float-right">{this.state.user}</span>
           </div>
           <div className="summary-item">
             <span>Shipping cost: </span>
