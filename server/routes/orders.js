@@ -9,9 +9,12 @@ const {
   getOneOrder,
   getOrderProduct,
 } = require("../controllers/orders");
-const { verifyUsersJWTPassword } = require("../controllers/users");
+const {
+  verifyUsersJWTPassword,
+  checkAdministrator,
+} = require("../controllers/users");
 
-router.get("/orders", getAllOrders);
+router.get("/orders", verifyUsersJWTPassword, checkAdministrator, getAllOrders);
 router.post("/orders", jsonParser, createOrder);
 router.get("/orders/user/:userId", verifyUsersJWTPassword, getUserOrders);
 router.get("/orders/:id", verifyUsersJWTPassword, getOneOrder);

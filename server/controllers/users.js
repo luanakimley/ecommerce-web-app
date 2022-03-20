@@ -30,7 +30,7 @@ exports.checkAdministrator = (req, res, next) => {
   if (req.decodedToken.accessLevel >= process.env.ACCESS_LEVEL_ADMIN) {
     return next();
   } else {
-    return res.json({ errorMessage: `User is not an administrator` });
+    return next(createError(401, "User is not an administrator"));
   }
 };
 

@@ -19,7 +19,7 @@ const {
   checkAdministrator,
 } = require("../controllers/users");
 
-router.get(`/products`, getAllProducts);
+router.get(`/products`,  getAllProducts);
 router.get(`/products/:id`, getOneProduct);
 router.get(`/products/photo/:filename`, getProductPhoto);
 router.post(
